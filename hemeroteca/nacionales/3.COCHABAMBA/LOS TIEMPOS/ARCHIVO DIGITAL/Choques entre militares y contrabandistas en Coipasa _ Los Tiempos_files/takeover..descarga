@@ -1,0 +1,146 @@
+(function ($) {
+  Drupal.behaviors.lt_themetakeover = {
+    attach: function(context, settings) {
+        var widthpage = $(document).width();
+        if($('#take-strategy-desktop').length > 0){
+            var cantidad = parseInt($('#take-strategy-desktop').attr('value'));
+            var type = $('#take-strategy-desktop').attr('type');
+
+            if(type == 'flotante'){
+                if($('body').hasClass('front')) {
+                    show_ads('desktop');
+
+                    if($(window).width() >= 1024){
+                        $('.banner-floating-container').hide();
+                    }
+                }
+            }
+            if(type == 'count'){
+                var count = $.cookie("counter-desk");//getcookie_take("counter-edmovil");
+                if(isNaN(count)){
+                    count=0;
+                    show_ads('desktop');
+                }else{
+                    if(count>=cantidad){
+                        count=0;
+                        show_ads('desktop');
+                    }
+                }
+                count++;
+                //console.log('CONTADOR DESK:'+count+'--');
+                var y = setcookie_take('counter-desk',count,1);
+            }else if(type == 'hour'){
+                var h_cokkie = $.cookie("horas-desk");//getcookie_take("horasedsociales");
+
+                var now = new Date().getTime();
+
+                //var cookie = $.parseJSON(h_cokkie);
+                //var timeleft = cookie.expires - now;
+                //console.log('HORAS MOVIL: '+h_cokkie);
+                if(h_cokkie==undefined){
+                    show_ads('desktop');
+                    setcookie_take_horas("horas-desk",cantidad);
+                }
+            }
+        }
+
+
+        if($('#take-strategy-movil').length > 0){
+            var cantidad = parseInt($('#take-strategy-movil').attr('value'));
+            var type = $('#take-strategy-movil').attr('type');
+            if(type == 'count'){
+                var count = $.cookie("counter-movil");//getcookie_take("counter-edmovil");
+                if(isNaN(count)){
+                    count=0;
+                    show_ads('movil');
+                    if(count==cantidad){
+                        count=0;
+                        show_ads('movil');
+                    }
+                }else{
+                    if(count>=cantidad){
+                        count=0;
+                        show_ads('movil');
+                    }
+                }
+                count++;
+                //console.log('CONTADOR MOVIL:'+count+'--');
+                var y = setcookie_take('counter-movil',count,1);
+            }else{
+                var h_cokkie = $.cookie("horas-movil");//getcookie_take("horasedsociales");
+
+                var now = new Date().getTime();
+                /*var cookie = $.parseJSON($.cookie("horas-movil"));
+                var timeleft = cookie.expires - now;*/
+                //console.log('HORAS MOVIL: '+h_cokkie);
+                if(h_cokkie==undefined){
+                    show_ads('movil');
+                    setcookie_take_horas("horas-movil",cantidad);
+                }
+            }
+        }
+
+        function show_ads(device){
+            var n_images = $('#take-strategy-'+device).attr('n-images');
+            var n_pos = $.cookie("n-image-"+device);
+            if(n_pos==n_images || n_pos==undefined){
+                n_pos = 1;
+            }else{
+                n_pos++;
+            }
+            $.cookie("n-image-"+device,n_pos);
+            $('.ads.'+device+' img:nth-child('+n_pos+')').addClass('active');
+
+            $('#takeover-'+device).addClass('active');
+            var shortly = new Date();
+            shortly.setSeconds(shortly.getSeconds() + 15.5);
+            if($("#takeover-desktop.flotante").length == 0){
+                $('#count-'+device).countdown({
+                    until: shortly,
+                    onExpiry: closeAds,
+                    onTick: watchCountdown
+                });
+            }
+            registrotakeover(device);
+            $('#takeover-'+device+' .close').click(function(){
+                closeAds();
+                return false;
+            });
+        }
+        function closeAds() {
+            $("#takeover-desktop").remove();
+            $("#takeover-movil").remove();
+        }
+
+        function watchCountdown(periods) {
+            $('.monitor').text('Publicidad desaparecerá en: ' + periods[6] + ' segundos');
+        }
+
+        function setcookie_take(name,value,duration){
+            $.cookie(name, value, {expires: duration});
+        }
+
+        function setcookie_take_horas(name,exp){
+            var now = new Date();
+            var time = now.getTime();
+            time = time + (3600000*exp);
+            now.setTime(time);
+            $.cookie(name, "true", {expires: now});
+        }
+        /*
+        * Ajax para takeover registro
+        */
+        function registrotakeover(device){
+            /*$.ajax({
+              url: 'registro_takeover.php',
+              data: {action: 'takeover', dev: device, widthdev: widthpage},
+              type: 'POST',
+              success: function(output) {
+              }
+            })*/
+        }
+
+
+    }
+  }
+})(jQuery);

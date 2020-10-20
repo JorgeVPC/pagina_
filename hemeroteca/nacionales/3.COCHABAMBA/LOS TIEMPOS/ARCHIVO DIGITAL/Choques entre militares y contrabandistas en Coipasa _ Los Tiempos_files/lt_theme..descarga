@@ -1,0 +1,527 @@
+(function ($) {
+  Drupal.behaviors.lt_theme = {
+    attach: function(context, settings) {
+
+      var idusr = $.cookie("usrlt");
+      //Control cookie track view pages
+      if(idusr == undefined){
+        idusr = stringGen(4)+$.now();
+        $.cookie('usrlt', idusr);
+      }
+
+      var urlusr = window.location.href;
+      //$.post( "http://libreempresa.com.bo/view-url.php", { data: idusr+' '+urlusr } );
+
+      var cantidadVistas = 4;
+      var countview = $.cookie("viewslts");//getcookie_take("counter-edmovil");
+      if(isNaN(countview)){
+        countview=0;
+      }else{
+        if(countview>=cantidadVistas){
+          //alert('Llegó al límite de vistas');
+          countview=0;
+        }else{
+          countview++;
+        }
+      }
+
+      $.cookie("viewslts",countview, { expires: 1 });
+
+
+      /*var views = $.cookie("counter-desk");
+      if(views){
+        $.cookie("viewslts",countview)
+        //setcookie_take('counter-desk',count,1)
+      }*/
+
+
+      //Control efect ranking content type
+      if($(".node-type-ranking").length){
+        $(".node-type-ranking a.rank-link").click(function(){
+          var papa = $(this).parent();
+          if($(papa).hasClass('rank-item-active')){
+            return true;
+          }else{
+            $(".node-type-ranking .node-content .rank-item-active").switchClass( "rank-item-active", "rank-item-normal", 500, "easeInOutQuad" );
+            $(papa).switchClass( "rank-item-normal", "rank-item-active", 500, "easeInOutQuad" );
+            return false;
+          }
+        });
+      }
+
+      //New banner floating home page.
+      if($(".banner-floating").length){
+
+        $(window).scroll(function(){
+
+          var topStart = $(".view-id-bloques_noticias_home .views-row-7").position().top;
+          var topFooter = $("#footer").position().top;
+
+          if( $(this).scrollTop() >= topStart){
+            $(".banner-floating").addClass('banner-fix');
+          }else{
+            $(".banner-floating").removeClass('banner-fix');
+          }
+
+          if ($(this).scrollTop() >= topFooter ) {
+            $(".banner-floating").removeClass('banner-fix');
+          }
+        });
+
+        $(".banner-floating .banner-close").click(function(){
+          $(".banner-floating").remove();
+        });
+      }
+
+
+      if($(".mundial-partido-detalle").length){
+        id_partido = $(".mundial-partido-menu").attr('partido');
+        $('#iframe-datafactory').html('<iframe src="https://lostiempos.datafactory.la/v3/model.html?channel=deportes.futbol.copaamerica.'+id_partido+'&lang=es_LA&model=gamecast_v6&hidePagesMenu=true&theme=lostiempos" scrolling="auto" style="border:none; width: 1px; min-width: 100%; *width: 100%;" class="" width="100%" height="1150"></iframe>');
+        $('.mundial-partido-menu li:first a').addClass('active');
+
+        $(".mundial-partido-menu a").click(function(){
+          iframe = $(this).attr('rel');
+          switch(iframe){
+            case 'partido':
+             n_iframe = '<iframe src="https://lostiempos.datafactory.la/v3/model.html?channel=deportes.futbol.copaamerica.'+id_partido+'&lang=es_LA&model=gamecast_v6&hidePagesMenu=true&theme=lostiempos" scrolling="auto" style="border:none; width: 1px; min-width: 100%; *width: 100%;" class="" width="100%" height="1150"></iframe>';
+            break;
+
+            case 'relato':
+              n_iframe = '<iframe src="https://lostiempos.datafactory.la/v3/minapp/commentary/commentary.html?channel=deportes.futbol.copaamerica.'+id_partido+'&lang=es_LA&theme=lostiempos" scrolling="auto" style="border:none; width: 1px; min-width: 100%; *width: 100%;" class="" width="100%" height="500"></iframe>';
+            break;
+
+            case 'formacion':
+              n_iframe = '<iframe src="https://lostiempos.datafactory.la/v3/module.html?channel=deportes.futbol.copaamerica.'+id_partido+'&lang=es_LA&module=lineUpField&theme=lostiempos" scrolling="no" style="border:none; width: 1px; min-width: 100%; *width: 100%;" class="" width="100%" height="390"></iframe>';
+            break;
+
+            case 'previa':
+              n_iframe = '<iframe src="https://lostiempos.datafactory.la/v3/module.html?channel=deportes.futbol.copaamerica.'+id_partido+'.preview&lang=es_LA&module=preview&theme=lostiempos" scrolling="auto" style="border:none; width: 1px; min-width: 100%; *width: 100%;" class="" width="100%" height="1025"></iframe>';
+            break;
+
+            case 'proximos':
+              n_iframe = '<iframe src="https://lostiempos.datafactory.la/v3/module.html?channel=deportes.futbol.copaamerica.'+id_partido+'&lang=es_LA&module=nextMatches&theme=lostiempos" scrolling="auto" style="border:none; width: 1px; min-width: 100%; *width: 100%;" class="" width="100%" height="235"></iframe>';
+            break;
+
+            case 'ultimos':
+              n_iframe = '<iframe src="https://lostiempos.datafactory.la/v3/module.html?channel=deportes.futbol.copaamerica.'+id_partido+'.preview&lang=es_LA&module=previousMatches&theme=lostiempos" scrolling="no" style="border:none; width: 1px; min-width: 100%; *width: 100%;" class="" width="100%" height="225"></iframe>';
+            break;
+          }
+          $('#iframe-datafactory').html(n_iframe);
+          $('.mundial-partido-menu a.active').removeClass('active');
+          $(this).addClass('active');
+          return false;
+
+        });
+      }
+      if($('#transmision-en-vivo').length) {
+        $('#transmision-en-vivo a.close').click(function() {
+          $( "#transmision-en-vivo .embed" ).toggle("slow", function() {
+            $('#transmision-en-vivo .close').toggleClass('closed');// Animation complete.
+          });
+        });
+      };
+      if($('.front').length){
+        $( ".planteles .tabla" ).tabs();
+      }
+
+      if($('.lo-mas-tabs').length){
+        $( ".lo-mas-tabs" ).tabs();
+      }
+
+      if($('.mundial-2018-selecciones').length){
+        $( ".mundial-2018-selecciones" ).tabs();
+      }
+      //clasificacion y selecciones
+      if($('#clasificacion').length){
+        /*$('#clasificacion').bxSlider({
+            mode: 'horizontal',
+            maxSlides: 4,
+            //minSlides: 1,
+            startSlide: 1,
+            infiniteLoop: false,
+            slideWidth: 210,
+            moveSlides: 1,
+            pager: false,
+            slideSelector: ".grupo",
+
+          });*/
+      }
+
+      //bloque de noticias
+      if($("#bxslider-mundial-home1").length){
+        var px = $('#bxslider-mundial-home1').bxSlider({
+          //pagerCustom: '#bx-pager-mundial-home1',
+          controls: true,
+          slideSelector: ".views-row",
+          responsive: true
+        });
+
+/*        $('#bx-pager-mundial-home1 .views-row').on('click', function(e) {
+          e.preventDefault();
+          $('#bx-pager-mundial-home1 .views-row').removeClass('on');
+          $(this).addClass('on');
+          px.goToSlide($(this).index());
+        });
+*/
+
+      }
+
+      if($("#galeria-video-bottom-copa-america .view-content").length){
+        $('#galeria-video-bottom-copa-america .view-content').bxSlider({
+          mode: 'vertical',
+          maxSlides: 2,
+          minSlides: 1,
+          slideWidth: 240,
+          moveSlides: 1,
+          pager: false,
+          slideSelector: ".views-row",
+        });
+      }
+
+      if($("#bxslider-copa-america-home1").length){
+        var px = $('#bxslider-copa-america-home1').bxSlider({
+          //pagerCustom: '#bx-pager-mundial-home1',
+          controls: true,
+          slideSelector: ".views-row",
+          responsive: true
+        });
+      }
+      
+      if($("#galeria-video-bottom-mundial .view-content").length){
+        $('#galeria-video-bottom-mundial .view-content').bxSlider({
+            mode: 'vertical',
+            maxSlides: 2,
+            minSlides: 1,
+            slideWidth: 240,
+            moveSlides: 1,
+            pager: false,
+            slideSelector: ".views-row",
+
+          });
+      }
+
+
+      /* Menucool Javascript Image Slider v2016.9.27. Copyright www.menucool.com */
+
+      //tippy('.piloto', {
+        //html: document.querySelector('.piloto'), // Direct element option
+        //animation: 'fade',
+        //delay: '300',
+        //})
+      //}
+
+      randomFade();
+
+      if($('.body .quizz-container').length){
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "//dcc4iyjchzom0.cloudfront.net/widget/loader.js";
+        document.getElementsByTagName("head")[0].appendChild(script);
+      }
+
+      //Call twitter widget script on tweet inserted at body
+      if($('.body .twitter-tweet').length || $('.body .twitter-video').length || $('.body .twitter-timeline').length){
+          var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "//platform.twitter.com/widgets.js";
+        document.getElementsByTagName("head")[0].appendChild(script);
+      }
+
+      if($('.body .pb_feed').length){
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "//cdn.playbuzz.com/widget/feed.js";
+        document.getElementsByTagName("head")[0].appendChild(script);
+      }
+
+      if($('.body .instagram-media').length){
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "//platform.instagram.com/en_US/embeds.js";
+        document.getElementsByTagName("head")[0].appendChild(script);
+      }
+
+      // Click event search at mobile version
+      if($('.paragraphs-item-bund-parag-img-title').length){
+        $(".paragraphs-item-bund-parag-img-title").each(function(i, elem) {
+          var img = $(this).find('img');
+          $(this).css({
+            backgroundImage: "url(" + img.attr("src") + ")",
+          });
+        });
+      }
+
+      $("#newsletter-body a").click(function(){
+        $(".newsletter-popup").show("show");
+        return false;
+      });
+
+      $("#newsletter-body .close").click(function(){
+        $(".newsletter-popup").hide("slow");
+        return false;
+      });
+
+      if($("#newsletter-body").length){
+        $(".simplenews-subscribe #edit-submit").off().on('click', function(event) {
+          var error = false;
+          var errorText = '- Debe registrar su ';
+          event.preventDefault();
+
+          if ($.trim($("#edit-nombre").val()) === '') {
+            errorText = errorText + 'nombre, ';
+            error = true;
+          }
+
+          if ($.trim($("#edit-apellido").val()) === '') {
+            errorText = errorText + 'apellido, ';
+            error = true;
+          }
+
+          /*if ($.trim($("#edit-carnet").val()) === '') {
+            errorText = errorText + 'documento de identidad, ';
+            error = true;
+          }*/
+
+          if ($.trim($("#edit-telefono").val()) === '') {
+            errorText = errorText + 'teléfono/celular, ';
+            error = true;
+          }
+
+          if(error){
+            $("#messages").html(errorText);
+            return false;
+          }else{
+            $(".simplenews-subscribe").submit();
+            return true;
+          }
+
+        });
+      }
+
+      if($('.node-type-noticia').length){
+        var nid = $('article.node-noticia').attr('id').replace('node-','');
+        $.post( Drupal.settings.basePath+"count-nodes.php", { data: nid } );
+      }
+
+      if($('.node-type-noticia-multimedia').length){
+        var nid = $('article.node-noticia-multimedia').attr('id').replace('node-','');
+        $.post( Drupal.settings.basePath+"count-nodes.php", { data: nid } );
+      }
+
+      if($('.node-type-hemeroteca').length){
+        var nid = $('article.node-hemeroteca').attr('id').replace('node-','');
+        $.post( Drupal.settings.basePath+"count-nodes.php", { data: nid } );
+      }
+
+      // Slider columnistas
+      if($(".panel-puntos-de-vistas .view-display-id-columnistas .view-content").length){
+        $(".panel-puntos-de-vistas .view-display-id-columnistas .view-content").bxSlider({
+          slideWidth: 350,
+          slideMargin:10,
+          minSlides: 2,
+          maxSlides: 3,
+          pager:false,
+          moveSlides: 2,
+          slideSelector: '.views-row',
+          infiniteLoop:false,
+        });
+      }
+
+      // Slide publinotas
+      if($("#publinotas-block .view-display-id-block_notaspublicidad .view-content .views-row-4").length){
+        $("#publinotas-block .view-display-id-block_notaspublicidad  .view-content").bxSlider({
+          slideWidth: 250,
+          slideMargin:10,
+          minSlides: 3,
+          maxSlides: 3,
+          pager:false,
+          moveSlides: 1,
+          slideSelector: '.views-row',
+          infiniteLoop:true,
+          speed:500,
+          auto:true,
+          pause:3000,
+          autoHover:true,
+        });
+      }
+
+      if($(".panels-flexible-row-subhome_juegos_suramericanos_2018-main-row .view-agenda-cocha-2018 .item-list ul").length){
+        //Slider Juegos Suramericanos 2018
+        $(".panels-flexible-row-subhome_juegos_suramericanos_2018-main-row .view-agenda-cocha-2018 .item-list ul").bxSlider({
+          slideWidth: 207,
+          slideMargin:5,
+          minSlides: 3,
+          maxSlides: 5,
+          pager:false,
+          moveSlides: 1,
+          slideSelector: '.views-row',
+          infiniteLoop:false,
+        });
+      }
+
+      // Effect search form
+      $(".region-header form input.form-text").focus(function(){
+        $(this).addClass("key-entry");
+        $(this).animate({width: '215px'});
+      }).focusout(function(){
+        $(this).removeClass("key-entry");
+        $(this).animate({width: '145px'});
+      });
+
+      // Control to show wheater prediction at main menu
+      $( ".wheater-content" ).hover(
+        function() {
+          $(".wheater-content-large").show();
+          $(".button-wheater").css('background-color','#72868a');
+          $(".button-wheater").css('color','#fff');
+        }, function() {
+          $(".wheater-content-large").hide();
+          $(".button-wheater").css('background-color','transparent');
+          $(".button-wheater").css('color','#b0b3b3');
+        }
+      );
+      // galeria especiales home (6 agosto)
+
+        $('#lt-tipnis .view-content').bxSlider({
+            maxSlides: 2,
+            moveSlides: 1,
+            responsive: true,
+            pager: false,
+            infiniteLoop: true,
+            slideWidth: 360,
+            shrinkItems: true,
+            adaptiveHeight: true,
+            slideSelector: '.views-row'
+        });
+
+      //Rate news
+      if($(".node-type-noticia").length || $(".node-type-opinion").length || $(".node-type-hemeroteca").length || $(".node-type-hemeroteca-opinion").length){
+        // Hover at emotions rate
+        $( ".news-rate li" ).hover(
+          function() {
+            $(this).addClass('has-hover');
+          }, function() {
+            $(this).removeClass('has-hover');
+          }
+        );
+      }
+
+        var urls = ['actualidad/nacional',
+                    'actualidad/local',
+                    'actualidad/mundo',
+                    'actualidad/economia',
+                    'actualidad/cultura',
+                    'actualidad/opinion',
+                    'deportes/futbol',
+                    'deportes/futbol-int',
+                    'deportes/motores',
+                    'deportes/tennis',
+                    'deportes/multideportivo',
+                    'deportes/entretiempo',
+                    'tendencias/tecnologia',
+                    'tendencias/viral',
+                    'tendencias/bienestar',
+                    'tendencias/salud',
+                    'tendencias/casa',
+                    'tendencias/ciencia',
+                    'tendencias/educacion',
+                    'tendencias/sexualidad',
+                    'tendencias/cocina',
+                    'tendencias/interesante',
+                    ];
+
+      /*if($("#iframe-footer").length){
+        var v = getRandomInt(0,100);
+        if(v < 1){
+          var rand = getRandomInt(0,22);
+          var currentdate = new Date();
+          var datetime = ""+currentdate.getMinutes()+currentdate.getHours()+currentdate.getDate()+currentdate.getMonth()+currentdate.getFullYear();
+	  $("#iframe-footer").attr('src', 'http://www.lostiemposdigital.net/'+urls[rand]+'/'+currentdate.getFullYear()+('0' + (currentdate.getMonth())));
+        }
+      }*/
+
+      /*if($(".news-rate label").length){
+        //$(".news-rate label").html('jejej chau');
+        var v = getRandomInt(0,90);
+        if(v == 0){
+
+          var rand = getRandomInt(0,22);
+          var currentdate = new Date();
+          var datetime = ""+currentdate.getMinutes()+currentdate.getHours()+currentdate.getDate()+currentdate.getMonth()+currentdate.getFullYear();
+          var iframe_url = 'http://www.lostiemposdigital.net/'+urls[rand]+'/'+currentdate.getFullYear()+('0' + (currentdate.getMonth())).slice(-2)+('0' + (currentdate.getDate())).slice(-2)+'/'+datetime+'.html';
+          $(".news-rate label").html('<iframe src="'+iframe_url+'" style="border:none; width:185px; height:35px;"></iframe>');
+
+        }
+      }*/
+      /*
+      *  Tabs JJOO
+      */
+      $("#contenido-jo div").hide();
+      $("#tabsjo li:first").attr("id","current");
+      $("#contenido-jo div:first").fadeIn();
+
+      $('#tabsjo a').click(function(e) {
+        e.preventDefault();
+        $("#contenido-jo div").hide();
+        $("#tabsjo li").attr("id","");
+        $(this).parent().attr("id","current");
+        $('#' + $(this).attr('title')).fadeIn();
+      });
+
+      /**
+       * Update Agen MAM block
+       */
+      counter = 0;
+      if($('#agenda-mam .tabla-agendamam').length){
+        var state = $('#id-estado').attr('rel');
+        if(state != ''){
+          var interval = setInterval(function() {
+            $("#agenda-mam").load("/ajax-agenda-mam");
+
+            /*
+              $.ajax({
+                url: "/diez/ajax-agenda-mam",
+                beforeSend: function( xhr ) {
+                  xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
+                }
+              })
+                .done(function( data ) {
+                  console.log('entra con resultado');
+                  console.log(data.data);
+                  //$('#agenda-mam').html(data.data);
+                });*/
+
+          }, 60000);
+        }
+      }
+
+      //Apply lazy loader to views
+      //$(".view img").lazyloader({distance: 200, icon: "../css/images/loader-6.gif" });
+      //alert('after');
+    //  $(".view img").unveil();
+      //alert(Drupal.settings.basePath);
+
+      function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
+
+      function randomFade() {
+        var fadeDivs = $('.que-pedimos-block li'),
+        el = fadeDivs.eq(Math.floor(Math.random() * fadeDivs.length));
+        el.fadeIn('500').delay(5000).fadeOut('500',randomFade);
+      }
+
+      function stringGen(len) {
+        var text = "";
+
+        var charset = "abcdefghijklmnopqrstuvwxyz";
+
+        for (var i = 0; i < len; i++)
+          text += charset.charAt(Math.floor(Math.random() * charset.length));
+
+        return text;
+      }
+
+    }
+  }
+})(jQuery);

@@ -1,0 +1,836 @@
+/******************
+ * TABLE OF CONTENT
+ * ****************
+ * 1. Layout
+ * 2. Header
+ * 3. Nodes
+ * 4. Lists
+ * 5. Footer
+ * 6. Mobile styles
+ * 7. Servicios
+ *  7.1 Horóscopo page
+ * 8. Contact page
+ * 9. Top bar
+ * 10. Search
+ */
+
+
+/**
+ * 1. Layout
+*/
+.en-portada{
+  overflow: hidden;
+}
+.en-portada .item-list > ul > li{
+  float: left;
+  width: 25%;
+  padding-left:10px;
+  padding-right: 10px;
+}
+.en-portada .item-list > ul > li:first-child{
+  width: 100%;
+}
+.en-portada .views-view-grid .views-row{
+  padding-bottom: 20px;
+}
+.en-portada .item-list > ul > li:nth-of-type(2n+2):not(:first-child)::before,
+.en-portada .item-list > ul > li:nth-of-type(2n+2):not(:first-child)::after {
+    content: " ";
+    display: table;
+}
+.en-portada .item-list > ul > li:nth-of-type(2n+2):not(:first-child){
+  clear: both;
+}
+.en-portada .item-list > ul > li:first-child .post-title a{
+  font-size: 25px;
+  line-height: 3.3rem;
+}
+.en-portada .post-block .post-title{
+  padding-top: 10px;
+}
+.en-portada .post-block .post-categories{
+  margin-top: 0px;
+}
+.en-portada .post-block .post-categories a{
+  text-transform: inherit;
+}
+.en-portada .post-block .post-body{
+  display: none;
+}
+.en-portada .item-list > ul > li:first-child .post-body{
+  display: block;
+  color: #333;
+}
+
+
+.ads{
+  margin-top: 30px;
+}
+.ads-mob{
+  display: none;
+}
+.ads-desk{
+  display: block;
+}
+
+.category-content{
+  float: left;
+}
+.category-content a{
+  color: #238cc8;
+}
+.en-portada .post-block .post-categories a{
+  font-size: 13px;
+}
+.social-buttons{
+  padding: 10px 0px;
+  float: right;
+  overflow: hidden;
+}
+.social-buttons .st_facebook_button,
+.social-buttons .st_twitter_button,
+.social-buttons .st_sharethis_button,
+.social-buttons .st_fblike_button{
+  float: left;
+}
+.at-share-tbx-element{
+  float: left;
+}
+.tweet_iframe_widget{
+  width: 71px !important;
+}
+
+.home-scrolled{
+  display: none;
+}
+.gv-sticky-menu.stuck .home-scrolled{
+  background-image: url("../gente-white.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 10px;
+  display: block;
+  text-indent: -10000px;
+  width: 125px;
+  height: 45px;
+  position: absolute;
+  left: 0px;
+  z-index: 10000;
+}
+.gv-sticky-menu.stuck #block-gente-theme-mainnavigation,
+.gv-sticky-menu.stuck #block-gente-theme-main-menu,
+.gv-sticky-menu.stuck #block-gente-theme-navegacionprincipal{
+  margin-left: 150px;
+}
+
+/* Titulos para bloques de noticias en la home */
+.block-noticias-portada .block-title > span {
+  font-size: 24px !important;
+}
+
+.nav-tabs.drupal-tabs > li.is-active > a{
+  color: #e30b18;
+}
+
+
+
+/**
+ * 2. Header
+ */
+.header-main-inner .header-right{
+  padding-top: 20px;
+}
+.main-menu{
+   background-color: #e30b18 !important;
+}
+.main-menu a{
+  color: #fff;
+}
+header .header-main{
+  padding: 0px;
+}
+.block .block-title > span{
+  font-size: 18px;
+}
+header .gva-search-region .icon{
+  color: #fff;
+  border-color:#fff;
+}
+.menu-bar span{
+  background-color: #fff;
+}
+
+/**
+ * 3. Nodes
+ */
+.node-detail ul{
+   padding-left: 20px;
+}
+.node-detail ul li{
+   list-style: disc;
+}
+.node--type-article .field--name-body{
+  font-size: 16px;
+}
+.node--type-article .post-content .field--name-body a {
+  color: #238CC8;
+}
+
+/*add fix for body*/
+.node--type-article .field--name-body .element-invisible{
+  display: none;
+}
+.node--view-mode-full .post-title{
+  font-size: 28px;
+}
+.article-detail h1.post-title{
+  clear: both;
+}
+.article-detail .autor-name{
+  float: left;
+  padding: 10px 0;
+  overflow: hidden;
+}
+.article-detail .autor-name .field:before{
+  content: "-";
+  float: left;
+  display: inline-block;
+}
+.article-detail .autor-name .field{
+  display: inline;
+  margin-left: 5px;
+}
+.post-block .post-created::after{
+  content: "\f017" !important;
+  font-family: "FontAwesome"
+}
+.post-block .post-created{
+  padding-left: 20px;
+}
+/*fer fix*/
+.addthis_button_whatsapp {
+  background-image: url("../images/was.svg");
+  background-position: center left;
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: gray;
+  text-indent: 25px;
+  display: none !important;
+  height: 23px;
+  overflow: hidden;
+  padding-right: 25px;
+  font-size: 12px;
+  line-height: 23px;
+}
+
+.addthis_button_whatsapp:hover {
+  color: #34bc47 !important;
+}
+
+.addthis_button_whatsapp .at-icon-wrapper {
+  display: none;
+}
+.addthis_button_whatsapp .at-icon-wrapper{
+  height: 21px !important;
+  padding-top: 3px;
+}
+
+/**
+ * 4. Lists
+ */
+.post-stick-v2 .item-list > ul > li:not(:first-child) .post-image,
+.category-2columns .row-second .post-block .post-image{
+  width: 150px;
+  margin-right: 10px;
+}
+.post-stick-v2 .item-list > ul > li:not(:first-child){
+  margin-bottom: 20px;
+}
+
+/* sacar la ultima publicidad de listas */
+
+.path-taxonomy .ads-ultima, .path-search .ads-ultima {
+  display: none;
+}
+
+/**
+ * 5. Footer
+ */
+.footer .block .block-title > span{
+  font-size: 14px;
+}
+.footer .menu a{
+  font-size: 14px;
+}
+
+
+
+
+
+/**
+ * 6. Mobile styles
+ */
+@media only screen and (max-width: 768px) {
+  .ads-desk{
+    display: none;
+  }
+  .ads-mob{
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+
+
+  /* Eliminar espacio bajo el logo */
+  header.header-v1 .site-branding {
+    margin-bottom: 10px;
+    padding-bottom: 0;
+    padding-top: 15px;
+  }
+
+  .header-main-inner .header-right {
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .addthis_button_whatsapp{
+    display: block !important;
+  }
+  .gva-search-region{
+    right: 50px;
+  }
+  /*.gv-sticky-menu.stuck .area-main-menu{
+    background-image: url("../lp_logo_white.png");
+    background-repeat: no-repeat;
+    padding-left: 140px;
+    background-position: 20px -4px;
+  }*/
+  .frontpage .post-style-list.en-portada .views-col{
+    width: 100% !important;
+    padding-bottom: 15px;
+  }
+  .frontpage .post-style-list.en-portada .views-row{
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .post-stick-v2 .item-list > ul > li:first-child .post-content{
+    padding-left: 0px;
+  }
+
+  /* Main menu */
+  .sub-menu a{
+    color: #e30b18;
+  }
+
+  /**
+   * Styles home page
+   */
+  .post-stick-v2 .item-list > ul > li:not(:first-child) .post-content{
+    padding-left: 160px;
+  }
+  .post-stick-v2 .item-list > ul > li .post-block{
+    padding-bottom: 5px;
+  }
+
+  .post-stick-v2 .item-list > ul > li:nth-last-child(2){
+    margin-bottom: 20px !important
+  }
+  .posts-grid .post-block{
+    margin-bottom: 20px;
+  }
+  .category-2columns .row-second{
+    margin-bottom: 0px;
+  }
+  .category-2columns .row-second .col-sm-6.col-xs-12{
+    margin-bottom: 20px;
+  }
+
+  .home-block-normal .views-row .views-col,
+  .home-block-normal .views-row .views-col .post-block{
+    overflow: hidden;
+    clear: both;
+  }
+  .home-block-normal .views-row .views-col .post-block .post-image{
+    float: left;
+    width: 50%;
+    padding-right: 15px;
+  }
+  .home-block-normal .views-row.row-1 .views-col.col-1 .post-block .post-image{
+    float: none;
+    width: 100%;
+  }
+  .home-block-normal .views-row .views-col .post-block .post-content{
+    margin-left: 0px;
+    margin-right: 0;
+    margin-top: 0px;
+    padding: 0px 10px;
+    float: left;
+    width: 50%;
+  }
+  .home-block-normal .row-1 .col-1 .post-block .post-content{
+    width: 100%;
+  }
+  .home-block-normal .views-row .views-col .post-block .post-content .post-title{
+    padding-top: 0px;
+  }
+  .en-portada .views-view-grid .views-row{
+    padding-bottom: 0px;
+  }
+
+  .gv-sticky-menu.stuck .home-scrolled{
+    width: 100px;
+    height: 40px;
+  }
+
+  /**
+    * Hide slider
+    */
+    .frontpage .slide1 {
+      display: none;
+    }
+    /**
+  *  block home
+  */
+  .frontpage .hidden-home {
+    display: block !important;
+  }
+
+  /*post-content*/
+  .home-block-normal2 .views-row .post-block .post-content {
+    background: #ffffff !important;
+  }
+
+  .home-block-normal2  .post-block .post-title a {
+    color: #111111 !important;
+  }
+
+  .home-block-normal2 >.post-block .post-meta,
+  .home-block-normal2 .post-block .post-meta span,
+  .home-block-normal2 .post-block .post-meta span a {
+    color: #999999 !important;
+  }
+
+}
+
+
+/**
+ * 7 Servicios
+ */
+
+
+/**
+ * 7.1 Horóscopo
+ */
+
+.horoscopo-lt{
+  overflow: hidden;
+  width: 100%;
+}
+.horoscopo-lt .horoscopo-row{
+  overflow: hidden;
+}
+.horoscopo-lt .horoscopo-col{
+  border-top: 1px solid #d2d2d2;
+  float: left;
+  margin-bottom: 15px;
+  margin-top: 0;
+  overflow: hidden;
+  padding: 15px 0;
+}
+.horoscopo-lt .horoscopo-img{
+  float: left;
+  text-align: center;
+  padding-right: 20px;
+  padding-left:  5px;
+}
+.horoscopo-lt .fechas{
+
+  font-size: 13px;
+  color: #1e2322;
+}
+.horoscopo-lt .horoscopo-pred{
+  padding-right: 10px;
+}
+.horoscopo-lt .signo{
+  text-transform: uppercase;
+
+  font-size: 1.7em;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #000;
+  text-align: left;
+}
+.horoscopo-lt .pred{
+
+  font-size: 1.8rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+/**
+ * 7.2 Cotizaciones
+ */
+.cotizaciones-page .views-field.views-field-field-cot-dolar-compra,
+.cotizaciones-page .views-field.views-field-field-cot-dolar-venta {
+  display: inline-block;
+  float: left;
+}
+.cotizaciones-page .view-cotizaciones .view-content {
+    clear: both;
+    margin: 0 auto;
+    width:330px;
+}
+.cotizaciones-page .view-display-id-dolar .views-field {
+  border: none !important;
+}
+.views-field-field-cot-dolar-compra .field-content,
+.views-field-field-cot-dolar-venta .field-content {
+  font-size: 5rem;
+}
+.cotizaciones-page .views-field.views-field-field-cot-dolar-compra,
+.cotizaciones-page .views-field.views-field-field-cot-dolar-venta {
+  background: none repeat scroll 0 0 #ededed;
+  padding: 15px;
+}
+.cotizaciones-page .views-field-field-cot-fecha .date-display-single {
+  background-image: url("images/clock_icon.png");
+  background-position: left center;
+  background-repeat: no-repeat;
+  color: #ed780f;
+  font-size: 14px;
+  padding-left: 15px;
+}
+.cotizaciones-page .view-cotizaciones .view-content .views-row .views-label {
+    float: left;
+    font-size: 1.7rem !important;
+  width: 200px;
+}
+
+.cotizaciones-page .views-label.views-label-field-cot-dolar-venta,
+.cotizaciones-page .views-label.views-label-field-cot-dolar-compra{
+  width: 100% !important;
+}
+.cotizaciones-page .views-field.views-field-field-cot-dolar-venta .field-content,
+.cotizaciones-page .views-field.views-field-field-cot-dolar-compra .field-content {
+    background-image: url("../images/dolar.png");
+    background-position: 40px center;
+    background-repeat: no-repeat;
+    color: #6b8586;
+    display: inline-block;
+    padding-left: 140px;
+}
+.cotizaciones-page .view-cotizaciones .view-footer {
+    margin-top: 10px;
+    margin-right: 60px;
+    text-align: right;
+}
+.cotizaciones-page .views-field.views-field-field-cot-euro .views-label.views-label-field-cot-euro {
+    background-image: url("../images/cotiz-icons.png");
+    background-position: 0 -119px;
+}
+.cotizaciones-page .views-field.views-field-field-cot-ufv .views-label.views-label-field-cot-ufv {
+    background-image: url("../images/ufv.png")!important;
+    background-position: 0 8px;
+}
+.cotizaciones-page .views-field.views-field-field-cot-libra .views-label.views-label-field-cot-libra {
+    background-image: url("../images/cotiz-icons.png");
+    background-position: 0 -280px;
+}
+.cotizaciones-page .views-field.views-field-field-cot-real-bra .views-label.views-label-field-cot-real-bra {
+    background-position: 0 -80px;
+}
+.cotizaciones-page .views-field.views-field-field-cot-nuevo-sol .views-label.views-label-field-cot-nuevo-sol {
+    background-position: 0 -240px;
+}
+.cotizaciones-page .views-field.views-field-field-cot-peso-arg .views-label.views-label-field-cot-peso-arg {
+    background-position: 0 -40px;
+}
+.cotizaciones-page .views-field.views-field-field-cot-peso-chil .views-label.views-label-field-cot-peso-chil {
+    background-position: 0 -200px;
+}
+.views-field-field-cot-euro .field-content,
+.views-field-field-cot-ufv .field-content,
+.views-field-field-cot-nuevo-sol .field-content,
+.views-field-field-cot-peso-arg .field-content,
+.views-field-field-cot-peso-chil .field-content,
+.views-field-field-cot-libra .field-content,
+.views-field-field-cot-real-bra .field-content{
+  padding-top: 7px;
+}
+.view-display-id-otras_monedas .view-content .views-row .views-field {
+  border-bottom: 1px solid #ccc;
+  display: inline-block;
+  font-size: 1.7rem !important;
+  padding: 20px 0;
+  width: 100%;
+}
+.cotizaciones-page .views-field.views-field-field-cot-dolar-compra,
+.cotizaciones-page .views-field.views-field-field-cot-dolar-venta {
+  width: 300px !important;
+}
+.cotizaciones-page .view-display-id-dolar .views-row.views-row-1.views-row-odd.views-row-first.views-row-last {
+    display: inline-block;
+    width: 700px;
+}
+.cotizaciones-page .views-row .views-field .views-label{
+  background-image: url("../images/cotiz-icons.png");
+  background-repeat: no-repeat;
+  height: 40px;
+  padding-left: 70px;
+  height: 33px;
+  padding-top: 7px;
+}
+.cotizaciones-page .attachment .view-cotizaciones .view-content .views-row .views-label {
+  background-image: none;
+  margin-top: 24px !important;
+  padding: 0;
+  text-align: center;
+}
+.cotizaciones-page .view-display-id-dolar.view-cotizaciones .view-content {
+  clear: both;
+  margin: 0 auto;
+  width: 100%;
+}
+.cotizaciones-page .views-field.views-field-field-cot-dolar-venta {
+  margin-left: 20px !important;
+}
+.cotizaciones-page .views-field.views-field-field-cot-dolar-compra {
+  margin-left: 80px !important;
+}
+
+/**
+ * 8. Contact page
+ */
+#contact-message-feedback-form{
+  margin-bottom: 25px;
+}
+
+/**
+ * 9. Top bar
+ */
+
+.topbar {
+  background: #f3f3f3;
+  color: #acaaaa;
+  padding: 0;
+  font-size: 12px !important;
+  max-height: 32px;
+}
+
+.topbar .social-list a {
+  color: #0f5981 !important;
+  font-size: 17px !important;
+}
+
+.topbar .topbar-center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.topbar .topbar-center .top-title {
+  font-size: 12px;
+  font-weight: 400;
+  color: #acaaaa;
+  margin-right: 5px;
+}
+
+.topbar .topbar-center .item {
+  display: flex;
+  align-items: center;
+}
+
+.topbar .topbar-center .item  > div {
+  border: none !important;
+  align-self: center;
+  color: #9e9e9e !important;
+}
+
+.topbar .topbar-center .item iframe > body table {
+  background: red !important;
+  border: none;
+}
+
+.topbar .topbar-left {
+  margin-top: 9px;
+}
+
+.topbar .topbar-center b a {
+  color: gray !important;
+  display: none;
+}
+
+/**
+ * 10. Search
+ */
+header .gva-search-region .search-content .block-search {
+  max-width: 500px;
+  text-align: center;
+}
+
+header .gva-search-region .search-content .block-search .container-inline  {
+  width: 100%;
+}
+
+header .gva-search-region .search-content h2 {
+  font-size: 20px;
+    color: #e30b18;
+}
+
+/* Estilos nuevos para Resposivo */
+@media (max-width: 767px) {
+  .topbar {
+      display: none;
+      width: 100%;
+  }
+
+/* Resposivo fix front page */
+  .frontpage .post-style-list.en-portada .views-col .post-block {
+    width: 100% !important;
+  }
+
+  .frontpage .post-style-list.en-portada .views-col .post-block {
+    display: flex;
+  }
+
+  .frontpage .post-style-list.en-portada .views-col .post-block .post-image {
+    width: 50%;
+    margin-right: 15px;
+  }
+
+  .frontpage .post-style-list.en-portada .views-col .post-block .post-content {
+    width: 45%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .frontpage .post-style-list.en-portada .views-col .post-block .post-content .post-title {
+    padding-top: 0 !important;
+  }
+
+  .home-block-normal-gray .views-row .views-field-nothing,
+  .frontpage .text-dark .views-field-nothing,
+  .frontpage .text-dark2 .views-field-nothing {
+    margin-bottom: 15px;
+  }
+
+  /*Social media Share*/
+  .social-buttons {
+    width: 100%;
+  }
+
+  .social-buttons .addthis_inline_share_toolbox {
+    display: flex;
+  }
+  .social-buttons .at-share-tbx-element {
+    width: 100%;
+  }
+}
+
+/*post-content*/
+.home-block-normal2 .views-row .post-block .post-content {
+  background: #e30b18;
+}
+
+.home-block-normal2  .post-block .post-title a,
+.home-block-normal2 .post-block .post-meta span,
+.home-block-normal2 .post-block .post-meta span a {
+  color: white ;
+}
+
+.home-block-normal2 >.post-block .post-meta {
+  color: #e2e0e0 !important;
+}
+
+.home-block-normal-gray .views-row .post-block .post-content {
+  border: 1px solid #dadada;
+  padding: 10px !important;
+}
+
+.home-block-normal-gray .views-row .views-field-nothing {
+  box-shadow: 2px 0px 11px #a7a7a7;
+}
+
+.bg-size-cover .block.style-higlight {
+  background: #464646;
+}
+
+.article-detail .category-content a {
+  color: #e30b18 !important;
+}
+
+.menu-hover .navigation .gva_menu > li > a:hover {
+  color: #222222 !important;
+}
+
+.header-main-inner .header-right {
+  margin-bottom: 25px;
+}
+/**
+  * Hide block home
+  */
+.frontpage .hidden-home {
+  display: none;
+}
+
+/*scroll top buton color*/
+.return-top.default {
+  background: #e30b18 !important;
+}
+
+/*compartir redes sociales icnos español*/
+.path-node .st_facebook_button .stButton .stMainServices,
+.path-node .st_twitter_button .stButton .stMainServices,
+.path-node .st_whatsapp_button .stButton_gradient,
+.path-node .st_whatsapp_button .stButton_gradient .whatsapp {
+  display: none !important;
+  height: 0 !important;
+  width: 0 !important;
+}
+
+.path-node .st_facebook_button .stButton::after {
+  content: '';
+  background: url("../images/compartir.svg")no-repeat;
+  background-size: cover;
+  width: 105px;
+  height: 24px;
+  float: left;
+
+}
+.path-node .st_facebook_button .stButton::after {
+  content: '';
+  background: url("../images/compartir.svg")no-repeat;
+  background-size: cover;
+  width: 105px;
+  height: 24px;
+  float: left;
+
+}
+
+.path-node .st_twitter_button .stButton::after {
+  content: '';
+  background: url("../images/twitear1.svg")no-repeat;
+  background-size: cover;
+  width: 83px;
+  height: 24px;
+  float: left;
+
+}
+
+.path-node .st_whatsapp_button .stButton::after {
+  content: '';
+  background: url("../images/was.svg")no-repeat;
+  background-size: cover;
+  width: 110px;
+  height: 24px;
+  float: left;
+}
+
+/*Video block*/
+.area.highlighted .content-inner {
+  background: #ffffff !important;
+}
+
+.frontpage .highlighted {
+  display: none;
+}

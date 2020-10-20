@@ -1,0 +1,107 @@
+// JavaScript Document
+		function tamanoTexto(Accion,Elemento){
+			var obj=document.getElementById(Elemento);
+			var max = 250
+			var min = 100
+			if (obj.style.fontSize==""){
+				obj.style.fontSize="100%";
+			}
+			actual=parseInt(obj.style.fontSize);
+			incremento=10;
+			
+			if( Accion=="reestablecer" ){
+				obj.style.fontSize="100%"
+			}
+			if( Accion=="aumentar" && ((actual+incremento) <= max )){
+				valor=actual+incremento;
+				obj.style.fontSize=valor+"%"
+			}
+			if( Accion=="disminuir" && ((actual+incremento) >= min )){
+				valor=actual-incremento;
+				obj.style.fontSize=valor+"%"
+			}
+		}
+		
+		
+	jQuery(document).ready(function($) {
+		var opciones="";	
+        function load(num) {if ('resumen'==num) { $('#contenido').load(enlace); }}
+        $.history.init(function(url) {
+                load(url == "" ? "1" : url);
+            });
+        $('#ajax-links a').live('click', function(e) {
+                var url = $(this).attr('href');
+                url = url.replace(/^.*#/, '');
+                $.history.load(url);
+                return false;
+            });
+    });
+	
+	
+		function patoescondido(cual) {
+		   var c=document.getElementById(cual)
+		   if(c.style.display=='none') {
+				c.style.display='block';
+		   } else {
+				c.style.display='none';
+		   }    return false;
+		}
+		
+		
+		function incrustar_video(url,div) {
+			for (i=1; i<6; i++) {
+				if (div!=i) { $('#video' + i).load('video_vacio.htm'); }
+			}
+			$('#video' + div).load(url);	
+		}
+		
+		function mostrar_policial(){
+			patoescondido('advertencia_policial'); 
+			patoescondido('contenido');
+		}
+		
+		function mostrar_fotos_policial(){
+			patoescondido('advertencia1_policial'); 
+			patoescondido('policial_escondido');
+		}
+		function mostrar_advertencia_policial(){
+			patoescondido('advertencia1_policial'); 
+			patoescondido('policial_mensaje');
+		}
+		
+		
+		function pestana(pestana) {
+			 
+			 
+			 document.getElementById('t' + pestana).className='pestanas_seleccionadas';
+			 
+			 if (pestana!='2') { document.getElementById('t2').className='pestanas'; }
+			 if (pestana!='3') { document.getElementById('t3').className='pestanas'; }
+			 if (pestana!='4') { document.getElementById('t4').className='pestanas'; }
+			 if (pestana!='5') { document.getElementById('t5').className='pestanas'; }
+
+			 document.getElementById('pestana2').style.display='none';
+			 document.getElementById('pestana3').style.display='none';
+			 document.getElementById('pestana4').style.display='none';
+			 document.getElementById('pestana5').style.display='none';
+			 
+			 document.getElementById('pestana' + pestana).style.display='block';
+		}
+		
+		function pestana_hemeroteca(pestana) {
+			 
+			 
+			 document.getElementById('t' + pestana).className='pestanas_seleccionadas';
+			 
+			 if (pestana!='2') { document.getElementById('t2').className='pestanas_hemeroteca'; }
+			 if (pestana!='3') { document.getElementById('t3').className='pestanas_hemeroteca'; }
+			 if (pestana!='4') { document.getElementById('t4').className='pestanas_hemeroteca'; }
+			 if (pestana!='5') { document.getElementById('t5').className='pestanas_hemeroteca'; }
+
+			 document.getElementById('pestana2').style.display='none';
+			 document.getElementById('pestana3').style.display='none';
+			 document.getElementById('pestana4').style.display='none';
+			 document.getElementById('pestana5').style.display='none';
+			 
+			 document.getElementById('pestana' + pestana).style.display='block';
+		}

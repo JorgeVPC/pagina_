@@ -1,0 +1,8 @@
+Se puede modificar rapidamente desde:
+barra.php
+pie_pagina.php
+
+
+para panel administrador
+usuario: vlcc
+contraseña: vlcc1234
