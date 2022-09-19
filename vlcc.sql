@@ -53,7 +53,7 @@ CREATE TABLE `noticia` (
 --
 
 INSERT INTO `noticia` (`id`, `titulo`, `descripcion`, `contenido`, `imagen`, `fecha`) VALUES
-(18, 'Aasana declara paro de aeropuertos, Arias dice que los sueldos se pagarán', 'Los trabajadores de la Administración de Aeropuertos y Servicios Auxiliares a la Navegación (Aasana) anunciaron este martes un paro nacional de las terminales aéreas en demanda de que el Gobierno cancele sus sueldos. Respecto a la medida, el Ministro de Obras Públicas, Iván Arias, aseguró que \"no tiene razón\" y que el pago está en curso. \r\n\r\n“Ellos (dirigentes de Aasana) fueron partícipes de la negociación, sacamos un decreto dándole un fideicomiso de 36 millones de bolivianos para que se paguen salarios, ', '', 'f800x450-316626_368072_5039.jpg', '2020-10-20 17:24:11');
+(18, 'salarios, ', '', 'f800x450-316626_368072_5039.jpg', '2020-10-20 17:24:11');
 
 -- --------------------------------------------------------
 
