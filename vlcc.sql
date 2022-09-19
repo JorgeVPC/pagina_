@@ -73,9 +73,6 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `nombre_usuario`, `password`) VALUES
-(10, 'vlcc', 'vlcc', 'vlcc', '$2y$10$KxNGPEE1vukiDJCyjm6pAudAov5uXbsH8s1XkX/pM.2mQ79Vkg2ga');
-
 --
 -- Índices para tablas volcadas
 --
